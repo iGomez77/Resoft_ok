@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ofertas Especiales</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="../Boostrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome para iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --sale-red: #dc3545;
+        --sale-orange: #fd7e14;
+        --sale-pink: #e83e8c;
+      }
+
+      .discount-section {
+        padding: 60px 0;
+        background: linear-gradient(135deg, #48f3ea 0%, #8f05ff 100%);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: #333;
+        position: relative;
+      }
+
+      .section-title:after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+        margin: 15px auto;
+        border-radius: 2px;
+      }
+
+      .product-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        height: 100%;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-img {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .discount-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 8px 15px;
+        border-radius: 50px;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+      }
+
+      .badge-40 {
+        background: linear-gradient(135deg, var(--sale-red), #ff7b7b);
+      }
+
+      .badge-50 {
+        background: linear-gradient(135deg, var(--sale-orange), #ffa94d);
+      }
+
+      .badge-65 {
+        background: linear-gradient(135deg, var(--sale-pink), #ff85c0);
+      }
+
+      .product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .original-price {
+        text-decoration: line-through;
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      .sale-price {
+        color: var(--sale-red);
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .product-title {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+        height: 50px;
+        overflow: hidden;
+      }
+
+      .product-description {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        height: 40px;
+        overflow: hidden;
+      }
+
+      .btn-sale {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 50px;
+        font-weight: 600;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      .btn-sale:hover {
+        transform: scale(1.05);
+        color: white;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .sale-timer {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+        border: 2px dashed #dee2e6;
+      }
+
+      .timer-text {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 8px;
+      }
+
+      .timer-numbers {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--sale-red);
+      }
+
+      .stats-bar {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 10px;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #667eea;
+      }
+
+      .stat-label {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .product-card {
+          margin-bottom: 30px;
+        }
+
+        .product-img {
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="discount-section">
+      <div class="container">
+        <h1 class="section-title">OFERTAS ESPECIALES RESOFT STORE</h1>
+        <p class="text-center text-muted mb-5">
+          Aprovecha estas increíbles ofertas por tiempo limitado
+        </p>
+        <a
+          href="../index.html"
+          style="
+            text-decoration: none;
+            font-size: 18px;
+            color: rgb(111, 0, 255);
+          "
+        >
+          < Menu Principal
+        </a>
+        <br /><br />
+        <div class="row">
+          <!-- Producto con 40% de descuento -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="product-card">
+              <div class="position-relative">
+                <img
+                  src="../img/NikePurpple.png"
+                  class="product-img"
+                  alt="Zapatos deportivos"
+                />
+                <span class="discount-badge badge-40">
+                  <i class="fas fa-fire me-1"></i> 40% OFF
+                </span>
+              </div>
+              <div class="card-body">
+                <h5 class="product-title">Zapatos Deportivos Nike</h5>
+                <p class="product-description">
+                  Zapatillas ideales para estilo unico y entrenamiento con
+                  máxima amortiguación
+                </p>
+
+                <div class="product-price">
+                  <span class="original-price">$150.000</span>
+                  <span class="sale-price">$99.999</span>
+                  <span class="badge bg-danger">Ahorras $59</span>
+                </div>
+
+                <div class="sale-timer">
+                  <div class="timer-text">Termina en:</div>
+                  <div class="timer-numbers" id="timer-40">24:00:00</div>
+                </div>
+
+                <button class="btn btn-sale mt-3 btn-agregar-sale" data-id="201" data-nombre="Zapatos Deportivos Nike"  data-precio="99999" data-imagen="../img/NikePurpple.png"  data-categoria="Ofertas">
+                  <i class="fas fa-shopping-cart me-2"> </i>Comprar Ahora
+                </button>
+                
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto con 50% de descuento -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="product-card">
+              <div class="position-relative">
+                <img
+                  src="../img/UnderArmour1.png"
+                  class="product-img"
+                  alt="Camiseta deportiva"
+                />
+                <span class="discount-badge badge-50">
+                  <i class="fas fa-bolt me-1"></i> 50% OFF
+                </span>
+              </div>
+              <div class="card-body">
+                <h5 class="product-title">
+                  Buso deportivo UnderArmour - Green
+                </h5>
+                <p class="product-description">
+                  Tecnología de fibras para tus entrenamientos de alta
+                  intensidad
+                </p>
+
+                <div class="product-price">
+                  <span class="original-price">$250.000</span>
+                  <span class="sale-price">$149.999</span>
+                  <span class="badge bg-danger">Ahorras $25</span>
+                </div>
+
+                <div class="sale-timer">
+                  <div class="timer-text">Termina en:</div>
+                  <div class="timer-numbers" id="timer-50">12:30:45</div>
+                </div>
+
+                <button class="btn btn-sale mt-3 btn-agregar-sale" data-id="202" data-nombre="Buso deportivo UnderArmour - Green"  data-precio="149999" data-imagen="../img/UnderArmour1.png"  data-categoria="Ofertas">
+                  <i class="fas fa-shopping-cart me-2"> </i>Comprar Ahora
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto con 65% de descuento -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="product-card">
+              <div class="position-relative">
+                <img
+                  src="../img/CamEssentials.png"
+                  class="product-img"
+                  alt="Reloj inteligente"
+                />
+                <span class="discount-badge badge-65">
+                  <i class="fas fa-crown me-1"></i> 65% OFF
+                </span>
+              </div>
+              <div class="card-body">
+                <h5 class="product-title">Fitness Pro</h5>
+                <p class="product-description">
+                  Mejora tus entrenamientos, con una prenda fitness Pro
+                </p>
+
+                <div class="product-price">
+                  <span class="original-price">$199.99</span>
+                  <span class="sale-price">$79.99</span>
+                  <span class="badge bg-danger">Ahorras $120</span>
+                </div>
+
+                <div class="sale-timer">
+                  <div class="timer-text">Termina en:</div>
+                  <div class="timer-numbers" id="timer-65">06:15:20</div>
+                </div>
+
+
+                <button class="btn btn-sale mt-3 btn-agregar-sale" data-id="203" data-nombre="Fitness Pro"  data-precio="79999" data-imagen="../img/CamEssentials.png"  data-categoria="Ofertas">
+                  <i class="fas fa-shopping-cart me-2"> </i>Comprar Ahora
+                </button>
+                
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        
+
+
+        <!-- Producto con 65% de descuento -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="product-card">
+              <div class="position-relative">
+                <img
+                  src="../img/shhh.png"
+                  class="product-img"
+                  alt="Reloj inteligente"
+                />
+                <span class="discount-badge badge-65">
+                  <i class="fas fa-crown me-1"></i> 65% OFF
+                </span>
+              </div>
+              <div class="card-body">
+                <h5 class="product-title">Nike Pro</h5>
+                <p class="product-description">
+                  Mejora tu Outfit con Nike Green Pro
+                </p>
+
+                <div class="product-price">
+                  <span class="original-price">$199.99</span>
+                  <span class="sale-price">$99.99</span>
+                  <span class="badge bg-danger">Ahorras $120</span>
+                </div>
+
+                <div class="sale-timer">
+                  <div class="timer-text">Termina en:</div>
+                  <div class="timer-numbers" id="timer-70">06:15:20</div>
+                </div>
+
+
+                <button class="btn btn-sale mt-3 btn-agregar-sale" data-id="203" data-nombre="Fitness Pro"  data-precio="99999" data-imagen="../img/shhh.png"  data-categoria="Ofertas">
+                  <i class="fas fa-shopping-cart me-2"> </i>Comprar Ahora
+                </button>
+                
+
+              </div>
+            </div>
+          </div>
+
+        <!-- Estadísticas de la venta -->
+        <div class="stats-bar">
+          <div class="row text-center">
+            <div class="col-md-4 stat-item">
+              <div class="stat-number">157</div>
+              <div class="stat-label">Productos Vendidos Hoy</div>
+            </div>
+            <div class="col-md-4 stat-item">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Días Restantes</div>
+            </div>
+            <div class="col-md-4 stat-item">
+              <div class="stat-number">89%</div>
+              <div class="stat-label">Clientes Satisfechos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mensaje de urgencia -->
+        <div class="alert alert-warning text-center mt-4" role="alert">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          <strong>¡Oferta por tiempo limitado!</strong> Estos descuentos
+          especiales finalizan pronto. No pierdas la oportunidad.
+        </div>
+      </div>
+
+
+      
+    </section>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Simulación de contadores regresivos
+      function startTimer(elementId, hours) {
+        let time = hours * 3600; // convertir horas a segundos
+        const timerElement = document.getElementById(elementId);
+
+        function updateTimer() {
+          const hoursLeft = Math.floor(time / 3600);
+          const minutesLeft = Math.floor((time % 3600) / 60);
+          const secondsLeft = time % 60;
+
+          timerElement.textContent =
+            `${hoursLeft.toString().padStart(2, "0")}:` +
+            `${minutesLeft.toString().padStart(2, "0")}:` +
+            `${secondsLeft.toString().padStart(2, "0")}`;
+
+          if (time <= 0) {
+            timerElement.textContent = "¡Oferta terminada!";
+            timerElement.style.color = "#dc3545";
+          } else {
+            time--;
+            setTimeout(updateTimer, 1000);
+          }
+        }
+
+        updateTimer();
+      }
+
+      // Iniciar los temporizadores cuando la página cargue
+      document.addEventListener("DOMContentLoaded", function () {
+        startTimer("timer-40", 24); // 24 horas
+        startTimer("timer-50", 12); // 12 horas
+        startTimer("timer-65", 6); // 6 horas
+
+        // Efecto de interacción en los botones
+        document.querySelectorAll(".btn-sale").forEach((button) => {
+          button.addEventListener("click", function () {
+            const productTitle =
+              this.closest(".card-body").querySelector(
+                ".product-title"
+              ).textContent;
+            alert(
+              `¡Excelente elección! Has seleccionado: ${productTitle}\nSerás redirigido al carrito de compras.`
+            );
+          });
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".btn-agregar-sale").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const producto = {
+              id: parseInt(btn.dataset.id),
+              nombre: btn.dataset.nombre,
+              precio: parseInt(btn.dataset.precio),
+              imagen: btn.dataset.imagen,
+              categoria: btn.dataset.categoria,
+              cantidad: 1,
+            };
+
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+            const existente = carrito.find((p) => p.id === producto.id);
+
+            if (existente) {
+              existente.cantidad++;
+            } else {
+              carrito.push(producto);
+            }
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+
+            // feedback al usuario
+            alert(`${producto.nombre} agregado al carrito 🛒`);
+
+            // opcional: redirigir al carrito
+            window.location.href = "carritoCompras.html";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

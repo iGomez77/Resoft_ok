@@ -1,0 +1,82 @@
+<head>
+  <link rel="stylesheet" href="../cssResoft/inventario.css" />
+</head>
+<body>
+<div id="tablaInventario" class="inv-container" style="font-family: Inter, Arial, sans-serif; padding:15px;">
+  
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px;">
+    <div>
+      <h2 style="margin:0 0 6px 0; color:var(--purple-1)">Inventario — Resoft Store</h2>
+      <div class="muted">Dashboard de stock y registro de movimientos</div>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button id="refreshInv" class="btn" onclick="cargarInventario()">Actualizar</button>
+    </div>
+  </div>
+
+  <div class="inv-top">
+    <div class="card">
+      <h4>Total de productos</h4>
+      <div class="big" id="totalProductos">—</div>
+    </div>
+    <div class="card">
+      <h4>Stock total</h4>
+      <div class="big" id="stockTotal">—</div>
+    </div>
+    <div class="card">
+      <h4>Productos con stock bajo</h4>
+      <div class="big" id="stockBajo">—</div>
+    </div>
+  </div>
+
+  <div class="cat-grid" id="catGrid"></div>
+
+  <div style="display:grid; grid-template-columns: 1fr 380px; gap:12px;">
+    <div class="card">
+      <h3 style="margin-top:0; color:var(--purple-1)">Movimientos recientes</h3>
+      <div style="overflow:auto; max-height:360px;">
+        <table id="movimientosTable">
+          <thead>
+            <tr><th>Fecha</th><th>Producto</th><th>Tipo</th><th>Cant.</th><th>Usuario</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div  id="registroMovimientoForm" class="card">
+      <h3 style="margin-top:0; color:var(--purple-1)">Registrar movimiento</h3>
+      <div class="muted" style="margin-bottom:8px;">Entrada / Salida / Ajuste</div>
+
+      <div class="form-row">
+        <label placeholder="Producto"></label>
+        <select id="productoSelect"></select>
+      </div>
+
+      <div class="form-row">
+        <select id="tipoMov">
+          <option value="entrada">Entrada</option>
+          <option value="salida">Salida</option>
+          <option value="ajuste">Ajuste (set stock)</option>
+        </select>
+        <input id="cantidad" type="number" min="0" placeholder="Cantidad" />
+      </div>
+      <div class="form-row">
+        <input id="usuarioMov" type="text" placeholder="Responsable (ej. Admin)" />
+      </div>
+      <div class="form-row">
+        <input id="descMov" type="text" placeholder="Descripción (opcional)" />
+      </div>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <button id="btnRegistrar" class="btn" onclick="registrarMovimiento()">Registrar</button>
+        <button id="btnLimpiar" class="btn" style="opacity:0.8; background:linear-gradient(180deg,#ddd,#bbb); color:#222;" onclick="limpiarFormulario()">Limpiar</button>
+      </div>
+      <div id="msgBox" style="margin-top:8px; color:var(--muted); font-size:13px;"></div>
+    </div>
+  </div>
+  
+</div>
+
+</body>
+
+
